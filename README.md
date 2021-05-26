@@ -1,37 +1,47 @@
-## Welcome to GitHub Pages
+## 婚礼邀请函上海版源码
 
-You can use the [editor on GitHub](https://github.com/lzgyyk/haoyundebobo/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+婚礼邀请函源码，只上传了上海版。做的比较粗糙，动画都是用css3书写的，假如有需要，可以借鉴一下，注意，视频和图片不要用我的哦！有版权，严禁用于除学习之外的其他任何用途。
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## perspective 动画透视效果
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
+透视效果是近大远小，我的邀请函中，图片垂直翻转效果，用到了perspective 。让图片透视旋转。
 
-# Header 1
-## Header 2
-### Header 3
+    @-webkit-keyframes rotater {
+      0% {
+        -webkit-transform: perspective(1200px) rotateY(-120deg);
+                transform: perspective(1200px) rotateY(-120deg);
+      }
+    100% {
+        -webkit-transform:perspective(800px) rotateY(180deg);
+                transform:perspective(800px) rotateY(180deg);
+      }
+    }
+    
+    @keyframes rotater {
+      0% {
+        -webkit-transform: perspective(1200px) rotateY(-120deg);
+                transform: perspective(1200px) rotateY(-120deg);
+      }
+    100% {
+        -webkit-transform:perspective(800px) rotateY(180deg);
+                transform:perspective(800px) rotateY(180deg);
+      }
+    
+    }
 
-- Bulleted
-- List
+perspective()可以指定透视距离，值越小，显示越大，离你越近。
 
-1. Numbered
-2. List
+## 关于邀请函用到的知识点
 
-**Bold** and _Italic_ and `Code` text
+请看文章http://www.haorooms.com/post/h5_animation_zj
 
-[Link](url) and ![Image](src)
-```
+有些知识点后来删掉了，例如font face特殊字体的应用
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+## 手机扫描预览
 
-### Jekyll Themes
+![手机扫描预览](https://github.com/confidence68/invitePage/blob/master/qrcode.png)
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/lzgyyk/haoyundebobo/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
-### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
