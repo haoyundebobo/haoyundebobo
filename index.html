@@ -1,79 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-        <title>四海八荒的上神上仙们，你有一封快递已准时护送到，请卿亲启~</title>
-        <script type="text/javascript" src="js/jquery.min.js"></script>
-        <script type="text/javascript" src="js/common.js"></script>
-        <link rel="stylesheet" href="css/pageanimate.css">
-        <link rel="stylesheet" href="css/common.css">
-    </head>
-
-    <body>
-        <div class="loadingcss"></div>
-        <div id="globalshow">
-            <div style="display: none"><img src="images/icon.jpg"> </div>
-            <div class="doorkuang">
-                <div class="door"></div>
-                <div class="tophandwrap">
-                    <div class="tophand "></div>
-                    <div class="lt1hook letter1"></div>
-                </div>
-                <div class="bottomwrap">
-                    <div class="bottomhand"></div>
-                    <div class="letter1">
-                        <div class="dot dotanimate"></div>
-                        <div class="clickbtn"></div>
-                    </div>
-                    <div class="inviteletter"></div>
-                    <a class="lettercontent" href="javascript:void(0)" data-href="photo.html"></a>
-                </div>
-            </div>
-            <audio preload="auto" hidden="true" autoplay="autoplay" id="peiyin" src="media/chapter1.mp3" type="audio/mpeg"></audio>
-            <audio preload="auto" hidden="true" id="fanye" src="media/book.mp3" type="audio/mpeg"></audio>
-        </div>
-        <script type="text/javascript">
-            $(window).load(function () {
-                $(".loadingcss").fadeOut(300);
-                setTimeout(function () {
-                    $("#globalshow").css({
-                        visibility: "visible"
-                    });
-                    $("#globalshow").find(".door").addClass("bx");
-                    // $("#peiyin")[0].play();
-                    $("#globalshow").find(".tophand").addClass("topanimate1 delay5");
-                    $("#globalshow").find(".lt1hook").addClass("topanimate delay4");
-                    $("#globalshow").find(".bottomwrap").addClass("bottomanimate delay8");
-                    $("#globalshow").find(".bottomhand").addClass("bottomanimate2 delay8");
-                    setTimeout(function () {
-                        $(".bottomwrap").on("click", ".letter1", function () {
-                            var _this = this;
-                            $(_this).hide();
-                            $(_this).next(".inviteletter").show();
-                            $(_this).parents(".doorkuang").addClass("bigclass")
-                            setTimeout(function () {
-                                $("#fanye")[0].play();
-                                var seebtn = $(_this).siblings(".lettercontent");
-                                var href = seebtn.data("href");
-                                $(_this).next(".inviteletter").addClass("fanye");
-                                seebtn.attr("href", href);
-
-
-                            }, 3500)
-
-                        })
-                    }, 9000)
-
-
-                }, 300);
-
-
-
-
-            })
-        </script>
-    </body>
-
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<style >
+		body{
+			margin: 0;
+			word-wrap: break-word;
+			word-break: break-all;
+		}
+		.title{
+			padding: 0.2rem 0.26rem;
+			font-size:  0.32rem;
+		}
+		.description{
+			margin: 0 0.26rem;
+			font-size:  0.26rem;
+			color: #777;
+			padding-bottom: 0.2rem;
+			border-bottom: 1px solid #ebebeb;
+		}
+		.rich-text{
+			margin: 0.3rem 0.26rem;
+			font-size: 0.29rem;
+			color: #888;
+		}
+		#function{
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding:0 0.46rem 0.34rem;
+		}
+		.btn{
+			width: 1.4rem;
+			text-align: center;
+			font-size: 0.26rem;
+		}
+		.btn img{
+			width: 0.42rem;
+			height: 0.42rem;
+		}
+		#review{
+			border-top: 0.3rem #f5f5f5 solid;
+		}
+		.label-title{
+			position: relative;
+			font-size: 0.32rem;
+			line-height: 0.88rem;
+			padding-left: 0.56rem;
+		}
+		.label-title::after{
+			position: absolute;
+			content: ' ';
+			display: inline-block;
+			height: 0.34rem;
+			width: 0.08rem;
+			border-radius: 0.08rem;
+			background: #33C633;
+			left: 0.26rem;
+			top: 0.28rem;
+		}
+		.list{
+			margin-left: 0.26rem;
+			padding-right: 0.26rem;
+			border-bottom: 1px solid #EBEBEB;
+			
+		}
+		.avatars{
+			border-radius: 50%;
+			width: 0.8rem;
+			height: 0.8rem;
+			margin-right: 0.2rem;
+		}
+		.case-info{
+			display: flex;
+			justify-content: space-between;
+		}
+		.name-time{
+			display: flex;
+			justify-content: space-between;
+			font-size: 0.3rem;
+			min-height: 0.8rem;
+			align-items: center;
+			color: #444;
+		}
+		.content{
+			margin-top: 0.14rem;
+			font-size: 0.32rem;
+		}
+		.function{
+			padding: 0.24rem 0;
+			display: flex;
+			align-items: center;
+			flex-direction: row-reverse;
+			font-size: 0.26rem;
+		}
+		.function img{
+			width: 0.36rem;
+			height: 0.36rem;
+			margin-right: 0.08rem;
+		}
+		.function img:nth-child(1){
+			margin-left: 0.34rem;
+		}
+	</style>
+  </head>
+  <script type="text/javascript">
+  	var deviceWidth = document.documentElement.clientWidth;
+  	    // var deviceWidth = window.screen.availWidth
+  	    // alert(navigator.userAgent)
+  	    // alert(deviceWidth)
+  	    // console.log(navigator.userAgent)
+  	    if(deviceWidth > 750) {
+  	        // deviceWidth = 750;
+  	        deviceWidth = 7.5 * 50;
+  	    }
+  	
+  	    document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
+  </script>
+  <body>
+	<div class="title">
+		这几天的 灰鹅蛋 什么价格呀？
+	</div>
+	<div class="description">
+		中国日报  118阅读
+	</div>
+	<div class="rich-text">
+		反倒是u返回雕塑和覅的苏哈覅回复副书记粉红色对方好多岁反低俗护发素发hi雕塑和覅u上的覅u回复法大师傅大师傅
+	</div>
+	<div id="function">
+		<div class="btn">
+			<img src="./star_1.png" >
+			<br />
+			10人点赞
+		</div>
+		<div class="btn">
+			<img src="./stars.png" >
+			<br />
+			收藏
+		</div>
+		<div class="btn">
+			<img src="./share.png" >
+			<br />
+			分享
+		</div>
+	</div>
+	<div id="review">
+		<div class="label-title">
+			评论
+		</div>
+		<div class="list">
+			<div class="case-info"><!-- 占位 -->
+				<img src="share.png" class="avatars">
+				<div class="main-info">
+					<div class="name-time">
+						玎珰珰啊玎珰珰啊玎珰珰
+						<div class="time">
+							8小时前
+						</div>
+					</div>
+					<div class="content">
+						过海关监管和法国德国hi哦机构发布的官方很孤独
+					</div>
+				</div>
+			</div>
+			<div class="function">
+				回复<img src="./returnValue.png" >0 <img src="star_2.png" >
+			</div>
+		</div>
+	</div>
+  </body>
 </html>
