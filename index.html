@@ -104,6 +104,33 @@
 		.function img:nth-child(1){
 			margin-left: 0.34rem;
 		}
+		#input-fixed{
+			box-shadow: 0 0 0.12rem 0 #777777 ;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-size: 0.28rem;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 1.1rem;
+			background: #fff;
+			z-index: 1;
+		}
+		.input{
+			line-height: 0.78rem ;
+			margin-left: 0.3rem;
+			flex-grow: 1;
+			background: #f5f5f5;
+			border-radius: 0.44rem;
+			color: #777;
+			padding-left: 0.4rem;
+		}
+		.input-btn{
+			text-align: center;
+			width: 1.46rem;
+		}
 	</style>
   </head>
   <script type="text/javascript">
@@ -170,5 +197,48 @@
 			</div>
 		</div>
 	</div>
+	<div id="input-fixed">
+		<div class="input">
+			请输入您的评论
+		</div>
+		<div class="input-btn">
+			评论
+		</div>
+	</div>
   </body>
+  <script type="text/javascript">
+  	function ajaxFunc(method,url,data,callback,flag) {
+  	    var xhr = null;
+  	    if (window.XMLHttpRequest) {
+  	        xhr = new XMLHttpRequest();
+  	    } else if (window.ActiveXObject) {
+  	        //兼容IE浏览器
+  	        xhr = new ActiveXObject("Microsoft.XMLHttp");
+  	    }
+  	    //防止请求方式输入小写
+  	    method = method.toUpperCase();
+  	    if (method == "GET") {
+  	        //初始化
+  	        xhr.open(method, url + '?' +data , flag);
+  	        //发送请求
+  	        xhr.send();
+  	    } else if (method == "POST") {
+  	        xhr.open(method, url, flag);
+  	        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  	        xhr.send(data);
+  	    }
+  	    //判断数据是否回来,请求是否成功
+  	    xhr.onreadystatechange = function () {
+  	        if (xhr.readyState === 4) {
+  	            if (xhr.status == 200) {
+  	                var backData = xhr.responseText;
+  	                callback(backData);
+  	            }
+  	        }
+  	    }
+  	}
+	ajaxFunc('POST','http://192.168.113.1:8081/api/index/showDetail','id=9',function(e){
+		console.log(e)
+	})
+  </script>
 </html>
