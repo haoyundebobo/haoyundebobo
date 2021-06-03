@@ -183,6 +183,7 @@
   	    document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
   </script>
   <body>
+	  <img src="./static/images/banner_01.png" >
 	  <a id="download-btn" href="http://fir.ysxapp.com/yvpc"></a>
 	<div class="title">
 		
@@ -281,7 +282,7 @@
 	}
 	const uid = getSearchString('id', window.location.search); //结果：2
 	
-	ajaxFunc('GET','http://127.0.3.22:8070/api/index/showDetail','id='+uid,function(e){
+	ajaxFunc('GET','http://siliao.ysxapp.cn/api/index/showDetail','id='+uid,function(e){
 		document.getElementsByClassName('title')[0].innerText=e.title
 		document.getElementsByClassName('description')[0].innerText= e.tag?(e.tag + '  ' + (e.num||0) + '阅读' ):((e.num||0) + ' 阅读')
 		e.content= e.content.replace(/<\s?img/g, "<img style='width:100%'")
@@ -299,7 +300,7 @@
 		document.getElementsByClassName('rich-text')[0].innerHTML=e.content
 		document.getElementsByClassName('zan_num')[0].innerText=e.zan||0
 	})
-	ajaxFunc('GET','http://127.0.3.22:8070/api/index/showSol','nid='+uid+'&page=1',function(e){
+	ajaxFunc('GET','http://siliao.ysxapp.cn/api/index/showSol','nid='+uid+'&page=1',function(e){
 		console.log(1)
 		let dom=`<div class="label-title">
 			评论
